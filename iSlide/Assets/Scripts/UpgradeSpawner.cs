@@ -19,8 +19,7 @@ public class UpgradeSpawner : MonoBehaviour
 
     IEnumerator SpawnUpgrade()
     {
-        yield return new WaitForSeconds(spawnPause);
-         
+    //yield return new WaitForSeconds(spawnPause); 
         while (true)
         {
             spawnPause = Random.Range(2, 5);
