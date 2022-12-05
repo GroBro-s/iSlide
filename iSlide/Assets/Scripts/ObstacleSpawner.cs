@@ -5,9 +5,10 @@ using UnityEngine;
 public class ObstacleSpawner : MonoBehaviour
 {
     private int spawnPatternChooser;
-    public GameObject obstacle;
-    private Vector2 spawnLocation = new Vector2(13,0);
-    private float spawnheight;
+    public GameObject[] obstacle;
+    private int spawnPick;
+    private Vector2 spawnLocation;
+    public float spawnHeight;
     private float spawnWidth;
     private float spawnPause;
 
@@ -17,13 +18,20 @@ public class ObstacleSpawner : MonoBehaviour
         StartCoroutine("spawnObstacle");
     }
 
+    void Update()
+    {
+        spawnLocation = new Vector2(13, spawnHeight);        
+    }
+    
     IEnumerator spawnObstacle()
     {
         while(true)
         {
             spawnPause = Random.Range(5,10);
+            spawnPick = Random.Range(0, 2);
+            print(spawnPick);
 
-            Instantiate(obstacle, spawnLocation, Quaternion.identity);
+            Instantiate(obstacle[spawnPick], spawnLocation, Quaternion.identity);
 
             yield return new WaitForSeconds(spawnPause);
         }

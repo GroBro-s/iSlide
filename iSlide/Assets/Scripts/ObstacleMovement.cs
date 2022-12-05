@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObstacleMovement : MonoBehaviour
 {
-    public int moveSpeed;
+    private int moveSpeed = 11;
     private Rigidbody2D rb;
 
     void Start()
@@ -14,7 +14,7 @@ public class ObstacleMovement : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.x < -20)
+        if (transform.position.x < -30)
         {
             Destroy(this.gameObject);
         }
