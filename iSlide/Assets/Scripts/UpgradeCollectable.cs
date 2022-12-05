@@ -25,10 +25,14 @@ public class UpgradeCollectable : MonoBehaviour
         transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
     }
 
-    void OnTriggerEnter2D()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        DestroyUpgrade();
-        print("You've collected an upgrade!");
+        if(other.gameObject.tag == "Player")
+        {
+            DestroyUpgrade();
+            print("You've collected an upgrade!");            
+        }
+
     }
 
     void DestroyUpgrade()

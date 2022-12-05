@@ -29,5 +29,9 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true; 
         }
+        if(other.gameObject.tag == "Obstacle")
+        {
+            isGrounded = true;
+        }
     }
 }

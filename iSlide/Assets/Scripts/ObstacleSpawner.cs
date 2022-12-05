@@ -5,26 +5,35 @@ using UnityEngine;
 public class ObstacleSpawner : MonoBehaviour
 {
     private int spawnPatternChooser;
-    public GameObject obstacle;
+    public GameObject[] obstacle;
+    private int spawnPick;
     private Vector2 spawnLocation;
-    private float spawnheight;
+    public float spawnHeight;
     private float spawnWidth;
     private float spawnPause;
 
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine("spawnObstacle");
     }
 
+    void Update()
+    {
+        spawnLocation = new Vector2(13, spawnHeight);        
+    }
+    
     IEnumerator spawnObstacle()
     {
-        yield return new WaitForSeconds(spawnPause);
-
         while(true)
         {
-            spawnPatternChooser = Random.Range(0, 1);
+            spawnPause = Random.Range(5,10);
+            spawnPick = Random.Range(0, 2);
+            print(spawnPick);
+
+            Instantiate(obstacle[spawnPick], spawnLocation, Quaternion.identity);
+
+            yield return new WaitForSeconds(spawnPause);
         }
     }
 }
