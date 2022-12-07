@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded = false;
     private Rigidbody2D rb;
     public float jumpHeight;
-testPlayerSkin
+    //testPlayerSkin
     public Animator animator;
     public GameObject gameManager;
     private SceneSwitcher sceneSwitcher;
@@ -22,7 +22,7 @@ testPlayerSkin
         rb = GetComponent<Rigidbody2D>();  
         sceneSwitcher = gameManager.GetComponent<SceneSwitcher>();     
     }
-    main
+    //main
 
     void Update()
     {
@@ -41,10 +41,11 @@ testPlayerSkin
         }
     }
 
- testPlayerSkin
+ //testPlayerSkin
     public void OnLanding ()
     {
         animator.SetBool("IsJumping", false);
+    }
     public void MoveRight()
     {
         rb.velocity = Vector2.right * sideSpeed;
@@ -58,7 +59,7 @@ testPlayerSkin
     public void MoveStop()
     {
         rb.velocity = Vector2.zero;
-    main
+    //main
     }
 
     void OnCollisionEnter2D(Collision2D other)
