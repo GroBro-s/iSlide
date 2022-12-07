@@ -54,23 +54,26 @@ public class SceneSwitcher : MonoBehaviour
     {
         tableTime = Random.Range(5,10);
         yield return new WaitForSeconds(tableTime);
-        tableScene = false;
-        obstacleSpawner.StopCoroutine("SpawnObstacle");
-        upgradeSpawner.StopCoroutine("SpawnUpgrade");
 
-        yield return new WaitForSeconds(1);
+        obstacleSpawner.StopCoroutine("SpawnObstacle");
+        
+        yield return new WaitForSeconds(3);
+        tableScene = false;
         moveSpeed = 11;
         floorScroll.xVelocity = 0;
-        player.GetComponent<Rigidbody2D>().gravityScale = 0;
 
-        yield return new WaitForSeconds(2);
-        backGroundScroll.xVelocity = 0;
+        yield return new WaitForSeconds(1);
+        upgradeSpawner.StopCoroutine("SpawnUpgrade");
+        player.GetComponent<Rigidbody2D>().gravityScale = 0;
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        
+        yield return new WaitForSeconds(1);
+        backGroundScroll.xVelocity = 0;
+
+        yield return new WaitForSeconds(0.5f);
         verticalButton.SetActive(false);
         horizontalButtons.SetActive(true);
-        
-        yield return new WaitForSeconds(0.5f);
         backGroundScroll.yVelocity = -4;
     }
 }

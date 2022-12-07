@@ -28,12 +28,10 @@ public class ObstacleSpawner : MonoBehaviour
         while(true)
         {
             spawnPause = Random.Range(5,10);
-            spawnPick = Random.Range(0, 2);
-            print(spawnPick);
-
-            Instantiate(obstacle[spawnPick], spawnLocation, Quaternion.identity);
-
             yield return new WaitForSeconds(spawnPause);
+
+            spawnPick = Random.Range(0, 2);
+            Instantiate(obstacle[spawnPick], spawnLocation, Quaternion.identity);
         }
     }
 }

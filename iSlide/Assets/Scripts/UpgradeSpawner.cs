@@ -22,12 +22,11 @@ public class UpgradeSpawner : MonoBehaviour
         while (true)
         {
             spawnPause = Random.Range(2, 5);
+            yield return new WaitForSeconds(spawnPause);
             spawnHeight = Random.Range(-2.5f, 3f);
             spawnLocation = new Vector2(spawnWidth, spawnHeight);
 
             Instantiate(upgrade, spawnLocation, Quaternion.identity);
-
-            yield return new WaitForSeconds(spawnPause);
         }
     }
 }
