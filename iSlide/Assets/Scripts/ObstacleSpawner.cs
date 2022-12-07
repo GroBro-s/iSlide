@@ -15,7 +15,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine("spawnObstacle");
+        StartCoroutine("SpawnObstacle");
     }
 
     void Update()
@@ -23,7 +23,7 @@ public class ObstacleSpawner : MonoBehaviour
         spawnLocation = new Vector2(13, spawnHeight);        
     }
     
-    IEnumerator spawnObstacle()
+    IEnumerator SpawnObstacle()
     {
         while(true)
         {

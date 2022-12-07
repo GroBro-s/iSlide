@@ -1,23 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     bool isGrounded = false;
     private Rigidbody2D rb;
     public float jumpHeight;
+testPlayerSkin
     public Animator animator;
+    public GameObject gameManager;
+    private SceneSwitcher sceneSwitcher;
+    private bool tableScene;
+    private int sideSpeed = 15;
+    private bool moveRight;
+    private bool moveLeft;
 
-    void Start()
+    void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();  
+        sceneSwitcher = gameManager.GetComponent<SceneSwitcher>();     
+    }
+    main
+
+    void Update()
+    {
+        tableScene = sceneSwitcher.tableScene;
     }
 
 
     public void Jump()
     {
-        if(isGrounded)
+        if(isGrounded && tableScene)
         {
             isGrounded = false;
             animator.SetBool("IsJumping", false);
@@ -26,9 +41,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+ testPlayerSkin
     public void OnLanding ()
     {
         animator.SetBool("IsJumping", false);
+    public void MoveRight()
+    {
+        rb.velocity = Vector2.right * sideSpeed;
+    }
+
+    public void MoveLeft()
+    {
+        rb.velocity = Vector2.left * sideSpeed;
+    }
+
+    public void MoveStop()
+    {
+        rb.velocity = Vector2.zero;
+    main
     }
 
     void OnCollisionEnter2D(Collision2D other)
