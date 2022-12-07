@@ -52,7 +52,7 @@ public class SceneSwitcher : MonoBehaviour
 
     IEnumerator SwitchToAir()
     {
-        tableTime = 2;
+        tableTime = Random.Range(5,10);
         yield return new WaitForSeconds(tableTime);
         tableScene = false;
         obstacleSpawner.StopCoroutine("SpawnObstacle");
@@ -64,12 +64,12 @@ public class SceneSwitcher : MonoBehaviour
         player.GetComponent<Rigidbody2D>().gravityScale = 0;
 
         yield return new WaitForSeconds(2);
-
         backGroundScroll.xVelocity = 0;
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         verticalButton.SetActive(false);
         horizontalButtons.SetActive(true);
+        
         yield return new WaitForSeconds(0.5f);
         backGroundScroll.yVelocity = -4;
     }
