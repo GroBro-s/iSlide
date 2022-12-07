@@ -15,11 +15,12 @@ public class BackGroundScroll : MonoBehaviour
 
     void Start()
     {
-        offset = new Vector2(xVelocity, yVelocity);
+
     }
 
     void Update()
     {
-        material.mainTextureOffset += offset * Time.deltaTime;    
+        material.mainTextureOffset += offset * Time.deltaTime;   
+        offset = new Vector2(xVelocity, yVelocity); 
     }
 }
