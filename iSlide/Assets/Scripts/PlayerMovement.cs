@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject gameManager;
     private SceneSwitcher sceneSwitcher;
     private bool tableScene;
+    public float sideSpeed;
 
     void Awake()
     {
@@ -22,8 +23,14 @@ public class PlayerMovement : MonoBehaviour
         tableScene = sceneSwitcher.tableScene;
     }
 
+    public void Move()
+    {
+
+    }
+    
     public void Jump()
     {
+        
         if(isGrounded && tableScene)
         {
             isGrounded = false;

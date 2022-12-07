@@ -17,6 +17,8 @@ public class SceneSwitcher : MonoBehaviour
     private int tableTime;
     private int moveSpeed;
     private bool floorSpawned;
+    public GameObject verticalButton;
+    public GameObject horizontalButtons;
 
 
     void Awake()
@@ -36,11 +38,15 @@ public class SceneSwitcher : MonoBehaviour
 
     void FixedUpdate()
     {
-        floor.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-        if(floorSpawned && floor.transform.position.x < -30)
+        if(floorSpawned)
         {
-            Destroy(floor);
-            floorSpawned = false;
+            floor.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+            if(floor.transform.position.x < -30)
+            {
+                Destroy(floor);
+                floorSpawned = false;
+                moveSpeed = 0;
+            }
         }
     }
 
@@ -58,7 +64,13 @@ public class SceneSwitcher : MonoBehaviour
         player.GetComponent<Rigidbody2D>().gravityScale = 0;
 
         yield return new WaitForSeconds(2);
+
         backGroundScroll.xVelocity = 0;
+        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        verticalButton.SetActive(false);
+        horizontalButtons.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
         backGroundScroll.yVelocity = -4;
     }
 }
