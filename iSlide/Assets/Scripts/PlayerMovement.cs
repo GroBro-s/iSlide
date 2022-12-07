@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
     }
-    
+
     public void Jump()
     {
         
@@ -36,6 +36,16 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
             rb.velocity = Vector2.up * jumpHeight;
         }
+    }
+
+    public void Right()
+    {
+        rb.velocity = Vector2.right * sideSpeed * Time.deltaTime;
+    }
+
+    public void Left()
+    {
+        rb.velocity = Vector2.left * sideSpeed * Time.deltaTime;
     }
 
     void OnCollisionEnter2D(Collision2D other)
