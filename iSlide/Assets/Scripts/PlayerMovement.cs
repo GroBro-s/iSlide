@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,7 +11,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject gameManager;
     private SceneSwitcher sceneSwitcher;
     private bool tableScene;
-    public float sideSpeed;
+    private int sideSpeed = 15;
+    private bool moveRight;
+    private bool moveLeft;
 
     void Awake()
     {
@@ -23,14 +26,8 @@ public class PlayerMovement : MonoBehaviour
         tableScene = sceneSwitcher.tableScene;
     }
 
-    public void Move()
-    {
-
-    }
-
     public void Jump()
     {
-        
         if(isGrounded && tableScene)
         {
             isGrounded = false;
@@ -38,14 +35,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void Right()
+    public void MoveRight()
     {
-        rb.velocity = Vector2.right * sideSpeed * Time.deltaTime;
+        rb.velocity = Vector2.right * sideSpeed;
     }
 
-    public void Left()
+    public void MoveLeft()
     {
-        rb.velocity = Vector2.left * sideSpeed * Time.deltaTime;
+        rb.velocity = Vector2.left * sideSpeed;
+    }
+
+    public void MoveStop()
+    {
+        rb.velocity = Vector2.zero;
     }
 
     void OnCollisionEnter2D(Collision2D other)
