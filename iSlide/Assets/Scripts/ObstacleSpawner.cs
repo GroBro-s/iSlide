@@ -27,7 +27,7 @@ public class ObstacleSpawner : MonoBehaviour
     {
         while(true)
         {
-            spawnPause = Random.Range(5,10);
+            spawnPause = Random.Range(2,5);
             yield return new WaitForSeconds(spawnPause);
 
             spawnPick = Random.Range(0, 2);

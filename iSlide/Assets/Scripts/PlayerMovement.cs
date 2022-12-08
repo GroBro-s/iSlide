@@ -1,4 +1,4 @@
-using System.Collections;
+  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private int sideSpeed = 15;
     private bool moveRight;
     private bool moveLeft;
+    
 
     void Awake()
     {

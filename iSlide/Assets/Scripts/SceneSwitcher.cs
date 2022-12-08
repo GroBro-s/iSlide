@@ -52,7 +52,7 @@ public class SceneSwitcher : MonoBehaviour
 
     IEnumerator SwitchToAir()
     {
-        tableTime = Random.Range(5,10);
+        tableTime = Random.Range(10,20);
         yield return new WaitForSeconds(tableTime);
 
         obstacleSpawner.StopCoroutine("SpawnObstacle");
