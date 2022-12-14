@@ -6,26 +6,37 @@ public class UpgradeSpawner : MonoBehaviour
 {
     public GameObject upgrade;
     private Vector2 spawnLocation;
-    private float spawnPause = 1;
+    private float spawnPause;
     private float spawnHeight;
-    private float spawnWidth = 12;
+    private float spawnWidth;
 
 
     void Start()
     {
-        StartCoroutine("SpawnUpgrade");
-        spawnLocation = new Vector2(spawnWidth, -1);
+        StartCoroutine("SpawnHorizontalUpgrade");
     }
 
-    IEnumerator SpawnUpgrade()
+    IEnumerator SpawnHorizontalUpgrade()
     { 
         while (true)
         {
             spawnPause = Random.Range(2, 5);
             yield return new WaitForSeconds(spawnPause);
-            spawnHeight = Random.Range(-2.5f, 3f);
-            spawnLocation = new Vector2(spawnWidth, spawnHeight);
 
+            spawnHeight = Random.Range(-3.1f, 3);
+            spawnLocation = new Vector2(12, spawnHeight);
+            Instantiate(upgrade, spawnLocation, Quaternion.identity);
+        }
+    }
+
+    IEnumerator SpawnVerticalUpgrade()
+    {
+        while (true)
+        {
+            spawnPause = Random.Range(2, 5);
+            yield return new WaitForSeconds(spawnPause);
+            spawnWidth = Random.Range(-11, 11);
+            spawnLocation = new Vector2(spawnWidth, -7);
             Instantiate(upgrade, spawnLocation, Quaternion.identity);
         }
     }

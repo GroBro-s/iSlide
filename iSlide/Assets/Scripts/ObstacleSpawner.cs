@@ -4,30 +4,37 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    private int spawnPatternChooser;
     public GameObject[] obstacle;
-    private int spawnPick;
     private Vector2 spawnLocation;
-    public float spawnHeight;
-    private float spawnWidth;
+    private int spawnPick;
     private float spawnPause;
 
 
     void Start()
     {
-        StartCoroutine("SpawnObstacle");
-    }
-
-    void Update()
-    {
-        spawnLocation = new Vector2(13, spawnHeight);        
+        StartCoroutine("SpawnHorizontalObstacle");
     }
     
-    IEnumerator SpawnObstacle()
+    IEnumerator SpawnHorizontalObstacle()
+    {
+        while(true)
+        {
+            spawnLocation = new Vector2(13, -3.95f);
+            spawnPause = Random.Range(4,7);
+            yield return new WaitForSeconds(spawnPause);
+
+            spawnPick = Random.Range(0, 2);
+            Instantiate(obstacle[spawnPick], spawnLocation, Quaternion.identity);
+        }
+    }
+
+    IEnumerator SpawnVerticalObstacle()
     {
         while(true)
         {
             spawnPause = Random.Range(2,5);
+            spawnLocation = new Vector2(0, -9);
+            spawnPause = Random.Range(4,7);
             yield return new WaitForSeconds(spawnPause);
 
             spawnPick = Random.Range(0, 2);

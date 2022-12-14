@@ -6,15 +6,16 @@ public class UpgradeCollectable : MonoBehaviour
 {
     public int moveSpeed;
     private Rigidbody2D rb;
+    public bool upgradeHorizontalMove = true;
 
-    void Start()
+    void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();        
     }
 
     void Update()
     {
-        if (transform.position.x < -12)
+        if (transform.position.x < -12 || transform.position.y > 30)
         {
             DestroyUpgrade();
         }
@@ -22,7 +23,15 @@ public class UpgradeCollectable : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+        if(upgradeHorizontalMove)
+        {
+            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);           
+        }
+
+        if(upgradeHorizontalMove == false)
+        {
+            transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -32,7 +41,6 @@ public class UpgradeCollectable : MonoBehaviour
             DestroyUpgrade();
             print("You've collected an upgrade!");            
         }
-
     }
 
     void DestroyUpgrade()

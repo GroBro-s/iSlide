@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class ObstacleMovement : MonoBehaviour
 {
-    private int moveSpeed = 11;
+    private int horizontalMoveSpeed = 11;
+    private int verticalMoveSpeed = 5;
     private Rigidbody2D rb;
+    public bool tableScene;
+    private GameObject gameManager;
+
 
     void Start()
     {
+        gameManager = GameObject.Find("GameManager");
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        if (transform.position.x < -30)
+        tableScene = gameManager.GetComponent<SceneSwitcher>().tableScene;
+
+        if (transform.position.x < -30 || transform.position.y > 20)
         {
             Destroy(this.gameObject);
         }
@@ -22,6 +29,14 @@ public class ObstacleMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+        if(tableScene)
+        {
+            transform.Translate(Vector3.left * horizontalMoveSpeed * Time.deltaTime);
+        }
+
+        if(tableScene == false)
+        {
+            transform.Translate(Vector3.up * verticalMoveSpeed * Time.deltaTime);            
+        }
     }
 }
