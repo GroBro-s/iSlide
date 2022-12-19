@@ -10,7 +10,9 @@ public class SceneSwitcher : MonoBehaviour
     [SerializeField] private GameObject backGround;
     private BackGroundScroll backGroundScroll;
     [SerializeField] private GameObject floor;
-    private BackGroundScroll floorScroll;  
+    [SerializeField] private GameObject newFloor;
+    private BackGroundScroll floorScroll;
+    private FloorMovement floorMovement;
     private PlayerMovement playerMovement;
     private int tableTime;
     private int airTime;
@@ -18,10 +20,12 @@ public class SceneSwitcher : MonoBehaviour
     private bool floorSpawned = true;
     private GameObject gameManager;
     private Rigidbody2D rb;
+    private Vector2 floorSpawnPosition = new Vector2(0, -6.22f);
     public bool tableScene;
     public GameObject player;
     public GameObject verticalButton;
     public GameObject horizontalButtons;
+    public bool moveFloorUp;
 
 
     void Awake()
@@ -33,6 +37,7 @@ public class SceneSwitcher : MonoBehaviour
         playerMovement = player.GetComponent<PlayerMovement>();
         backGroundScroll = backGround.GetComponent<BackGroundScroll>();
         floorScroll = floor.GetComponent<BackGroundScroll>();
+        floorMovement = floor.GetComponent<FloorMovement>();
         rb = player.GetComponent<Rigidbody2D>();
     }
     void Start()
@@ -54,9 +59,10 @@ public class SceneSwitcher : MonoBehaviour
         }
     }
 
+
     IEnumerator SwitchToAir()
     {
-        tableTime = Random.Range(10,20);
+        tableTime = Random.Range(1,2);
         yield return new WaitForSeconds(tableTime);
 
         obstacleSpawner.StopCoroutine("SpawnHorizontalObstacle");
@@ -83,9 +89,10 @@ public class SceneSwitcher : MonoBehaviour
         StartCoroutine("SwitchToGround");
     }
 
+
     IEnumerator SwitchToGround()
     {
-        airTime = Random.Range(10,20);
+        airTime = Random.Range(1,2);
         yield return new WaitForSeconds(airTime);
 
         print("SwitchToGround");
@@ -102,5 +109,8 @@ public class SceneSwitcher : MonoBehaviour
         rb.constraints = rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         upgradeSpawner.StartCoroutine("SpawnHorizontalUpgrade");
         obstacleSpawner.StartCoroutine("SpawnHorizontalObstacle");
+        Instantiate(newFloor, floorSpawnPosition, Quaternion.identity);
+        moveFloorUp = true;
+        StartCoroutine("SwitchToAir");
     }
 }
