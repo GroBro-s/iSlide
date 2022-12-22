@@ -8,7 +8,6 @@ public class SceneSwitcher : MonoBehaviour
     private UpgradeSpawner upgradeSpawner;
     [SerializeField] private GameObject backGround;
     private BackGroundScroll backGroundScroll;
-    private FloorScroll floorScroll;
     [SerializeField] private GameObject floor;
     private FloorMovement floorMovement;
     private int tableTime;
@@ -28,7 +27,6 @@ public class SceneSwitcher : MonoBehaviour
         upgradeSpawner = gameManager.GetComponent<UpgradeSpawner>();
         backGroundScroll = backGround.GetComponent<BackGroundScroll>();
         floorMovement = floor.GetComponent<FloorMovement>();
-        //floorScroll = floor.GetComponent<FloorScroll>();
         rb = player.GetComponent<Rigidbody2D>();
     }
     void Start()
@@ -39,7 +37,7 @@ public class SceneSwitcher : MonoBehaviour
 
     IEnumerator SwitchToAir()
     {
-        tableTime = Random.Range(1,2);
+        tableTime = Random.Range(10,20);
         yield return new WaitForSeconds(tableTime);
 
         obstacleSpawner.StopCoroutine("SpawnHorizontalObstacle");
@@ -67,7 +65,7 @@ public class SceneSwitcher : MonoBehaviour
 
     IEnumerator SwitchToGround()
     {
-        airTime = Random.Range(1,2);
+        airTime = Random.Range(10,20);
         yield return new WaitForSeconds(airTime);
 
         print("SwitchToGround");

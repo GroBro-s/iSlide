@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 9116226210363121903}
   - component: {fileID: 6828406909644744900}
   - component: {fileID: 283264453997250767}
-  - component: {fileID: 7131475915321571228}
   m_Layer: 0
   m_Name: Floor(Wood)prefab
   m_TagString: Floor
@@ -128,16 +127,3 @@ MonoBehaviour:
   offset: {x: 9, y: 0}
   moveFloorUp: 1
   moveFloorLeft: 0
---- !u!114 &7131475915321571228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6983463254118607190}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e3846af0b798f4bb01aed1cbda56bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0}
