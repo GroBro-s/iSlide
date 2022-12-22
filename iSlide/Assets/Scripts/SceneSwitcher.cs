@@ -5,60 +5,37 @@ using UnityEngine;
 public class SceneSwitcher : MonoBehaviour
 {
     private ObstacleSpawner obstacleSpawner;
-    private ObstacleMovement obstacleMovement;
     private UpgradeSpawner upgradeSpawner;
     [SerializeField] private GameObject backGround;
     private BackGroundScroll backGroundScroll;
+    private FloorScroll floorScroll;
     [SerializeField] private GameObject floor;
-    [SerializeField] private GameObject newFloor;
-    private BackGroundScroll floorScroll;
     private FloorMovement floorMovement;
-    private PlayerMovement playerMovement;
     private int tableTime;
     private int airTime;
-    private int moveSpeed;
-    private bool floorSpawned = true;
     private GameObject gameManager;
     private Rigidbody2D rb;
-    private Vector2 floorSpawnPosition = new Vector2(0, -6.22f);
     public bool tableScene;
     public GameObject player;
     public GameObject verticalButton;
     public GameObject horizontalButtons;
-    public bool moveFloorUp;
 
 
     void Awake()
     {
         gameManager = this.gameObject;
         obstacleSpawner = gameManager.GetComponent<ObstacleSpawner>();
-        obstacleMovement = gameManager.GetComponent<ObstacleMovement>();
         upgradeSpawner = gameManager.GetComponent<UpgradeSpawner>();
-        playerMovement = player.GetComponent<PlayerMovement>();
         backGroundScroll = backGround.GetComponent<BackGroundScroll>();
-        floorScroll = floor.GetComponent<BackGroundScroll>();
         floorMovement = floor.GetComponent<FloorMovement>();
+        //floorScroll = floor.GetComponent<FloorScroll>();
         rb = player.GetComponent<Rigidbody2D>();
     }
     void Start()
     {
+        floorMovement.SpawnFloor();
         StartCoroutine("SwitchToAir");
     }
-
-    void FixedUpdate()
-    {
-        if(floorSpawned)
-        {
-            floor.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-            if(floor.transform.position.x < -30)
-            {
-                Destroy(floor);
-                floorSpawned = false;
-                moveSpeed = 0;
-            }
-        }
-    }
-
 
     IEnumerator SwitchToAir()
     {
@@ -66,24 +43,22 @@ public class SceneSwitcher : MonoBehaviour
         yield return new WaitForSeconds(tableTime);
 
         obstacleSpawner.StopCoroutine("SpawnHorizontalObstacle");
+        upgradeSpawner.StopCoroutine("SpawnHorizontalUpgrade");
         yield return new WaitForSeconds(3);
 
         tableScene = false;
-        moveSpeed = 11;
-        floorScroll.xVelocity = 0;
+        floorMovement.MoveFloorLeft();
         yield return new WaitForSeconds(1);
 
-        upgradeSpawner.StopCoroutine("SpawnHorizontalUpgrade");
         rb.gravityScale = 0;
         rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         yield return new WaitForSeconds(1);
 
-        backGroundScroll.xVelocity = 0;
+        backGroundScroll.StartCoroutine("SwitchToGroundOffset");
         yield return new WaitForSeconds(0.5f);
 
         verticalButton.SetActive(false);
         horizontalButtons.SetActive(true);
-        backGroundScroll.yVelocity = -4;
         upgradeSpawner.StartCoroutine("SpawnVerticalUpgrade");
         obstacleSpawner.StartCoroutine("SpawnVerticalObstacle");
         StartCoroutine("SwitchToGround");
@@ -101,16 +76,14 @@ public class SceneSwitcher : MonoBehaviour
         yield return new WaitForSeconds(3);
 
         tableScene = true;
-        backGroundScroll.yVelocity = 0;
-        backGroundScroll.xVelocity = 4;
+        backGroundScroll.StartCoroutine("SwitchToAirOffset");
         verticalButton.SetActive(true);
         horizontalButtons.SetActive(false);
         rb.gravityScale = 3;
         rb.constraints = rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         upgradeSpawner.StartCoroutine("SpawnHorizontalUpgrade");
         obstacleSpawner.StartCoroutine("SpawnHorizontalObstacle");
-        Instantiate(newFloor, floorSpawnPosition, Quaternion.identity);
-        moveFloorUp = true;
+        floorMovement.SpawnFloor();
         StartCoroutine("SwitchToAir");
     }
 }

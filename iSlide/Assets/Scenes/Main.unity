@@ -123,38 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &11992146
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 11992147}
-  m_Layer: 0
-  m_Name: Wood
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &11992147
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11992146}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 704286837}
-  m_Father: {fileID: 772720671}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &28517148
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,13 +636,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backGround: {fileID: 1863022715}
-  floor: {fileID: 704286836}
-  newFloor: {fileID: 7087307170546298179, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
+  floor: {fileID: 6983463254118607190, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
   tableScene: 1
   player: {fileID: 562899618}
   verticalButton: {fileID: 1188541116}
   horizontalButtons: {fileID: 819529422}
-  moveFloorUp: 0
 --- !u!1 &477009730
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,16 +941,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 15
   gameManager: {fileID: 256839346}
---- !u!1 &704286836 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7087307170546298179, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
-  m_PrefabInstance: {fileID: 7087307170966355255}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &704286837 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7087307170546298178, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
-  m_PrefabInstance: {fileID: 7087307170966355255}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &772720670
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,8 +968,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 11992147}
+  m_Children: []
   m_Father: {fileID: 1935173742}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1449,8 +1404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6dccdf823032a94eb7a85d63cd36c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xVelocity: 4
-  yVelocity: 0
+  offset: {x: 0, y: 0}
 --- !u!212 &1863022717
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1662,61 +1616,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940020832}
   m_CullTransparentMesh: 1
---- !u!1001 &7087307170966355255
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 11992147}
-    m_Modifications:
-    - target: {fileID: 7087307170546298178, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7087307170546298178, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7087307170546298178, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -5.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7087307170546298178, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7087307170546298178, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7087307170546298178, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7087307170546298178, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7087307170546298178, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7087307170546298178, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7087307170546298178, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7087307170546298178, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7087307170546298179, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
-      propertyPath: m_Name
-      value: Floor(Wood)
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
-  m_SourcePrefab: {fileID: 100100000, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
