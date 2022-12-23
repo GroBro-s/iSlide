@@ -6,11 +6,15 @@ public class UpgradeCollectable : MonoBehaviour
 {
     private int moveSpeed = 11;
     private Rigidbody2D rb;
-    private bool upgradeHorizontalMove = true;
+    private bool tableScene;
+    public GameObject gameManager;
+    private SceneSwitcher sceneSwitcher;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();        
+        gameManager = GameObject.FindGameObjectWithTag("GameController");
+        rb = GetComponent<Rigidbody2D>();
+        sceneSwitcher = gameManager.GetComponent<SceneSwitcher>();
     }
 
     void Update()
@@ -19,16 +23,18 @@ public class UpgradeCollectable : MonoBehaviour
         {
             DestroyUpgrade();
         }
+
+        tableScene = sceneSwitcher.tableScene;
     }
 
     void FixedUpdate()
     {
-        if(upgradeHorizontalMove)
+        if(tableScene)
         {
             transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);           
         }
 
-        if(upgradeHorizontalMove == false)
+        if(tableScene == false)
         {
             transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
         }

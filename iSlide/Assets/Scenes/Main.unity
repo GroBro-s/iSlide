@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 256839350}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Obstacle
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -623,6 +623,7 @@ MonoBehaviour:
   obstacle:
   - {fileID: 2504173998660547002, guid: d50dfb4e32c5d564eae1a5bf3d83d0c6, type: 3}
   - {fileID: 383341944725429256, guid: 1a7131ab70a242d4a9b34d92b6d8dc2f, type: 3}
+  - {fileID: 4587204298291062022, guid: a47550b87031b7c47a89ce9848ea7584, type: 3}
 --- !u!114 &256839350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -635,12 +636,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4abc098438be8489cfdc4742c4ba08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backGround: {fileID: 1863022715}
-  floor: {fileID: 6983463254118607190, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
-  tableScene: 1
-  player: {fileID: 562899618}
   verticalButton: {fileID: 1188541116}
   horizontalButtons: {fileID: 819529422}
+  floor: {fileID: 6983463254118607190, guid: b985cc18c2a081547bd2951f625365fd, type: 3}
+  backGround: {fileID: 1863022715}
+  tableScene: 1
+  player: {fileID: 562899618}
 --- !u!1 &477009730
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,7 +874,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562899618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.5, y: -1.36, z: 0}
+  m_LocalPosition: {x: -6.5, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -939,8 +940,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb3c4d2eebbcbc4c8f46e554c8e5001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 15
-  gameManager: {fileID: 256839346}
 --- !u!1 &772720670
 GameObject:
   m_ObjectHideFlags: 0

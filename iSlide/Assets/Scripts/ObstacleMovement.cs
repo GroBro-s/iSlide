@@ -5,16 +5,14 @@ using UnityEngine;
 public class ObstacleMovement : MonoBehaviour
 {
     private int horizontalMoveSpeed = 11;
-    private int verticalMoveSpeed = 5;
-    private Rigidbody2D rb;
+    private int verticalMoveSpeed = 11;
     public bool tableScene;
     private GameObject gameManager;
 
 
-    void Start()
+    void Awake()
     {
         gameManager = GameObject.Find("GameManager");
-        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()

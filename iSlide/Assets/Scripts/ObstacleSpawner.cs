@@ -8,6 +8,7 @@ public class ObstacleSpawner : MonoBehaviour
     private Vector2 spawnLocation;
     private int spawnPick;
     private float spawnPause;
+    private float xSpawnPosition;
 
 
     void Start()
@@ -32,13 +33,13 @@ public class ObstacleSpawner : MonoBehaviour
     {
         while(true)
         {
-            spawnPause = Random.Range(2,5);
-            spawnLocation = new Vector2(0, -9);
-            spawnPause = Random.Range(4,7);
+            xSpawnPosition = Random.Range(-12, 12);
+            spawnLocation = new Vector2(xSpawnPosition, -9);
+
+            spawnPause = 0.5f;
             yield return new WaitForSeconds(spawnPause);
 
-            spawnPick = Random.Range(0, 2);
-            Instantiate(obstacle[spawnPick], spawnLocation, Quaternion.identity);
+            Instantiate(obstacle[2], spawnLocation, Quaternion.identity);
         }
     }
 }

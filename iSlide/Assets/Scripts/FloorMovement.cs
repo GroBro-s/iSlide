@@ -27,6 +27,7 @@ public class FloorMovement : MonoBehaviour
 			Destroy(this.gameObject);
 			moveFloorLeft = false;
 		}
+
 		this.GetComponent<Renderer>().material.mainTextureOffset += offset * Time.deltaTime;
 	}
 
