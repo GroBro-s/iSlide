@@ -5,19 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    bool isGrounded = false;
+    private bool isGrounded = false;
     private Rigidbody2D rb;
-    public float jumpHeight;
-    public GameObject gameManager;
     private SceneSwitcher sceneSwitcher;
     private bool tableScene;
     private int sideSpeed = 15;
-    private bool moveRight;
-    private bool moveLeft;
-    
+    private float jumpHeight = 15;
+    private GameObject gameManager;
 
     void Awake()
     {
+        gameManager = GameObject.Find("GameManager");
         rb = GetComponent<Rigidbody2D>();  
         sceneSwitcher = gameManager.GetComponent<SceneSwitcher>();     
     }
@@ -27,6 +25,17 @@ public class PlayerMovement : MonoBehaviour
         tableScene = sceneSwitcher.tableScene;
     }
 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Floor")
+        {
+            isGrounded = true; 
+        }
+        if(other.gameObject.tag == "Obstacle")
+        {
+            isGrounded = true;
+        }
+    }
     public void Jump()
     {
         if(isGrounded && tableScene)
@@ -49,17 +58,5 @@ public class PlayerMovement : MonoBehaviour
     public void MoveStop()
     {
         rb.velocity = Vector2.zero;
-    }
-
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if(other.gameObject.tag == "Floor")
-        {
-            isGrounded = true; 
-        }
-        if(other.gameObject.tag == "Obstacle")
-        {
-            isGrounded = true;
-        }
     }
 }
