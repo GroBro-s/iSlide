@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FloorMovement : MonoBehaviour
 {
-	[SerializeField]
 	Vector2 offset;
 	private int offsetVelocity = 9;
 	private GameObject newFloor;
