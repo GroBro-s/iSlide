@@ -68,9 +68,7 @@ public class SceneSwitcher : MonoBehaviour
         airTime = Random.Range(10,20);
         yield return new WaitForSeconds(airTime);
 
-        print("SwitchToGround");
-        upgradeSpawner.StopCoroutine("SpawnVerticalUpgrade");
-        obstacleSpawner.StopCoroutine("SpawnVerticalObstacle");
+        StopSpawningObjects();
         yield return new WaitForSeconds(3);
 
         tableScene = true;
@@ -79,9 +77,20 @@ public class SceneSwitcher : MonoBehaviour
         horizontalButtons.SetActive(false);
         rb.gravityScale = 3;
         rb.constraints = rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-        upgradeSpawner.StartCoroutine("SpawnHorizontalUpgrade");
-        obstacleSpawner.StartCoroutine("SpawnHorizontalObstacle");
+        StartSpawningObjects();
         floorMovement.SpawnFloor();
         StartCoroutine("SwitchToAir");
+    }
+
+    private void StopSpawningObjects()
+    {
+        upgradeSpawner.StopCoroutine("SpawnVerticalUpgrade");
+        obstacleSpawner.StopCoroutine("SpawnVerticalObstacle");
+    }
+
+    private void StartSpawningObjects()
+    {
+        upgradeSpawner.StartCoroutine("SpawnHorizontalUpgrade");
+        obstacleSpawner.StartCoroutine("SpawnHorizontalObstacle");
     }
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class UpgradeCollectable : MonoBehaviour
 {
-    public int moveSpeed;
+    private int moveSpeed = 11;
     private Rigidbody2D rb;
-    public bool upgradeHorizontalMove = true;
+    private bool upgradeHorizontalMove = true;
 
     void Awake()
     {
