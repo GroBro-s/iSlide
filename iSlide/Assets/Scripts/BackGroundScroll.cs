@@ -36,18 +36,15 @@ public class BackGroundScroll : MonoBehaviour
         offset = new Vector2(0, 0);
     }
 
-    public IEnumerator SwitchToGroundOffset()
+    public void SwitchToAirOffset()
     {
         SetOffsetNull();
-        yield return new WaitForSeconds(0.5f);
-
         SetVerticalOffset();
     }
 
-    public IEnumerator SwitchToAirOffset()
+    public void SwitchToGroundOffset()
     {
         SetVerticalOffset();
-        yield return new WaitForSeconds(0); //ander buggt de IEnumerator
         SetHorizontalOffset();
     }
 }
