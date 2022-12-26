@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
     private bool movePlayerLeft;
     private bool isGrounded = false;
     private Rigidbody2D rb;
+    [SerializeField]
+    private GameObject backGround;
+    private BackGroundScroll backGroundScroll;
     private SceneSwitcher sceneSwitcher;
     private bool tableScene;
     private int sideSpeed = 15;
@@ -19,7 +22,8 @@ public class PlayerMovement : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager");
         rb = GetComponent<Rigidbody2D>();  
-        sceneSwitcher = gameManager.GetComponent<SceneSwitcher>();     
+        sceneSwitcher = gameManager.GetComponent<SceneSwitcher>();
+        backGroundScroll = backGround.GetComponent<BackGroundScroll>(); 
     }
 
     //MoveLeft kan efficiënter. In plaats van de positie te resetten via de variabele kan de functie ook hergebruikt worden.
@@ -30,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (movePlayerUp )
         {
-            rb.velocity = new Vector2(0, 3);
+            rb.velocity = new Vector2(0, 8);
         }
 
         if (movePlayerLeft)
@@ -42,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
         {
             movePlayerUp = false;
 			rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+            backGroundScroll.yVelocity = -4;
+            backGroundScroll.SetVerticalOffset();
 		}
 
         if (transform.position.x < -7 && tableScene)
@@ -91,6 +97,7 @@ public class PlayerMovement : MonoBehaviour
         if(tableScene == false)
         {
             movePlayerUp = true;
+            backGroundScroll.yVelocity = -8;
         }
 
         if(tableScene) 

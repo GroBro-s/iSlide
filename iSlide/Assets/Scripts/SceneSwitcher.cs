@@ -57,8 +57,8 @@ public class SceneSwitcher : MonoBehaviour
         rb.gravityScale = 0;
         yield return new WaitForSeconds(1);
 
-        backGroundScroll.SwitchToAirOffset();
         playerMovement.ResetPlayerPosition();
+        backGroundScroll.SwitchToAirOffset();
         yield return new WaitForSeconds(0.5f);
 
         verticalButton.SetActive(false);
