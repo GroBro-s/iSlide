@@ -18,6 +18,7 @@ public class SceneSwitcher : MonoBehaviour
     private FloorMovement floorMovement;
     private GameObject gameManager;
     private Rigidbody2D rb;
+    private PlayerMovement playerMovement;
     private int tableTime;
     private int airTime;
     public bool tableScene;
@@ -31,6 +32,7 @@ public class SceneSwitcher : MonoBehaviour
         upgradeSpawner = gameManager.GetComponent<UpgradeSpawner>();
         backGroundScroll = backGround.GetComponent<BackGroundScroll>();
         floorMovement = floor.GetComponent<FloorMovement>();
+        playerMovement = player.GetComponent<PlayerMovement>();
         rb = player.GetComponent<Rigidbody2D>();
     }
 
@@ -53,10 +55,10 @@ public class SceneSwitcher : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         rb.gravityScale = 0;
-        rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         yield return new WaitForSeconds(1);
 
-        backGroundScroll.StartCoroutine("SwitchToGroundOffset");
+        backGroundScroll.SwitchToAirOffset();
+        playerMovement.ResetPlayerPosition();
         yield return new WaitForSeconds(0.5f);
 
         verticalButton.SetActive(false);
@@ -71,20 +73,24 @@ public class SceneSwitcher : MonoBehaviour
         yield return new WaitForSeconds(airTime);
 
         StopSpawningVerticalObjects();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
         tableScene = true;
-        backGroundScroll.StartCoroutine("SwitchToAirOffset");
+        rb.gravityScale = 3;
+        yield return 0;
+
+        playerMovement.ResetPlayerPosition();
+        yield return new WaitForSeconds(1);
+
+        backGroundScroll.SwitchToGroundOffset();
         verticalButton.SetActive(true);
         horizontalButtons.SetActive(false);
-        rb.gravityScale = 3;
-        rb.constraints = rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+
         StartSpawningHorizontalObjects();
         floorMovement.SpawnFloor();
+
         yield return new WaitForSeconds(0.3f);
 
-        player.transform.position = new Vector2(-6.5f, 0);
-        //Spawn de player weer terug naar de default runner positie
         StartCoroutine("SwitchToAir");
     }
 
