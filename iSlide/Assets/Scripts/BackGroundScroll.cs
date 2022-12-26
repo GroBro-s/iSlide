@@ -7,11 +7,12 @@ public class BackGroundScroll : MonoBehaviour
     Material material;
     [SerializeField] Vector2 offset;
     private int xVelocity = 4;
-    private int yVelocity = -4;
+    public int yVelocity = -4;
 
 
     private void Awake()
     {
+        yVelocity = -4;
         material = GetComponent<Renderer>().material;
         SetHorizontalOffset();
     }
@@ -26,7 +27,7 @@ public class BackGroundScroll : MonoBehaviour
         offset = new Vector2(xVelocity, 0);
     }
 
-    void SetVerticalOffset()
+    public void SetVerticalOffset()
     {
         offset = new Vector2(0, yVelocity);
     }
