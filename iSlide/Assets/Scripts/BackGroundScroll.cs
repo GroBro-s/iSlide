@@ -5,7 +5,7 @@ using UnityEngine;
 public class BackGroundScroll : MonoBehaviour
 {
     Material material;
-    [SerializeField] Vector2 offset;
+    Vector2 offset;
     private int xVelocity = 4;
     public int yVelocity = -4;
 

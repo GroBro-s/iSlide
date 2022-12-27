@@ -17,14 +17,18 @@ public class FloorMovement : MonoBehaviour
 
 	void Update()
 	{
-		if (moveFloorUp && transform.position.y > -5.25f)
+		if (transform.position.y > -5.25f && transform.position.x > -20)
 		{
 			moveFloorUp = false;
 		}
 
-		if (transform.position.x < -30)
+		if(transform.position.y > 10)
 		{
-			Destroy(this.gameObject);
+			Destroy(gameObject);
+		}
+
+		if (transform.position.x < -23)
+		{
 			moveFloorLeft = false;
 		}
 
@@ -56,6 +60,12 @@ public class FloorMovement : MonoBehaviour
 	{
 		newFloorMovement.moveFloorLeft = true;
 		SetFloorOffsetNull();
+	}
+
+	public void MovefloorUp()
+	{
+		newFloorMovement.verticalMoveSpeed = 8;
+		newFloorMovement.moveFloorUp = true;
 	}
 
 	private void SetFloorHorizontalOffset()

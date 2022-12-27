@@ -48,7 +48,7 @@ public class SceneSwitcher : MonoBehaviour
         yield return new WaitForSeconds(tableTime);
 
         StopSpawningHorizontalObjects();
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
 
         tableScene = false;
         floorMovement.MoveFloorLeft();
@@ -57,6 +57,7 @@ public class SceneSwitcher : MonoBehaviour
         rb.gravityScale = 0;
         yield return new WaitForSeconds(1);
 
+        floorMovement.MovefloorUp();
         playerMovement.ResetPlayerPosition();
         backGroundScroll.SwitchToAirOffset();
         yield return new WaitForSeconds(0.5f);
