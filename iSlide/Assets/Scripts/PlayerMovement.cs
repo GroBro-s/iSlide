@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     private bool movePlayerLeft;
     private bool isGrounded = false;
     private Rigidbody2D rb;
-    [SerializeField]
     private GameObject backGround;
     private BackGroundScroll backGroundScroll;
     private SceneSwitcher sceneSwitcher;
@@ -23,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         gameManager = GameObject.Find("GameManager");
         rb = GetComponent<Rigidbody2D>();  
         sceneSwitcher = gameManager.GetComponent<SceneSwitcher>();
+        backGround = GameObject.FindGameObjectWithTag("BackGround");
         backGroundScroll = backGround.GetComponent<BackGroundScroll>(); 
     }
 
